@@ -46,3 +46,26 @@ number_t negate (number_t num){
     return num;
 }
 
+number_t add (number_t numOne, number_t numTwo) {
+    if (numOne.tag != numTwo.tag) {
+        perror("I can't believe you really tried to add numbers with a different type. Why would you do this to me?");
+        exit(5);
+    }
+
+    number_t sum;
+    sum.tag = numOne.tag;
+    switch (sum.tag) 
+    {
+    case INT:
+        sum.value.integer = numOne.value.integer + numTwo.value.integer;
+        break;
+    case FLOAT:
+        sum.value.floater = numOne.value.floater + numTwo.value.floater;
+        break;
+    case DOUBLE:
+        sum.value.doubley = numOne.value.doubley + numTwo.value.doubley;
+        break;
+    }
+
+    return sum;
+}
