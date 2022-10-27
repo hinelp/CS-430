@@ -16,5 +16,21 @@ class MathTester
     raise 'You shouldn\'t see this message because this method should not be automatically called by the test runner.'
   end
 
+  def test_silly
+    assert_equal(1,2, "These are not equal")
+  end
+
   # ...
 end
+
+def run_tester (classname)
+  tester = classname.new
+  arr = tester.methods
+  arr.each do |method|
+    if (method.match(/(^test_)/))
+      tester.send(method.to_sym)
+    end
+ end
+end
+
+run_tester(MathTester)
